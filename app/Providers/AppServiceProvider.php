@@ -9,6 +9,8 @@ use App\Services\StudentUnificationService;
 use Exception;
 use iEducar\Modules\ErrorTracking\HoneyBadgerTracker;
 use iEducar\Modules\ErrorTracking\Tracker;
+use iEducar\Reports\Contracts\TeacherReportCard;
+use iEducar\Reports\TeacherReportCardService;
 use iEducar\Support\Navigation\Breadcrumb;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder as QueryBuilder;
@@ -117,6 +119,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StudentUnificationService::class, function () {
             return new StudentUnificationService(Auth::user());
         });
+
+        $this->app->bind(TeacherReportCard::class, TeacherReportCardService::class);
 
         Cache::swap(new CacheManager(app()));
         $this->app->register(DatabaseServiceProvider::class);
