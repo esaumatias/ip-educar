@@ -1,6 +1,0 @@
-# .gitignore específico para Vercel
-# Este arquivo permite que o vendor seja commitado apenas para deploy na Vercel
-
-# Mantém o vendor no repositório para Vercel
-!/vendor
-
