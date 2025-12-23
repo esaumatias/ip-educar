@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "yarn build && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
+  "outputDirectory": "dist",
+  "framework": null,
+  "installCommand": "yarn install"
+}
+
