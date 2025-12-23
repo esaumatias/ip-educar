@@ -4,11 +4,6 @@
   "outputDirectory": "public",
   "framework": null,
   "installCommand": "yarn install && composer install --no-dev --optimize-autoloader",
-  "functions": {
-    "api/index.php": {
-      "runtime": "php@8.3"
-    }
-  },
   "routes": [
     {
       "src": "/build/(.*)",
