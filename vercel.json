@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "yarn build && composer install --no-dev --optimize-autoloader",
+  "buildCommand": "yarn build",
   "outputDirectory": "public",
   "framework": null,
-  "installCommand": "yarn install && composer install --no-dev --optimize-autoloader",
+  "installCommand": "yarn install",
+  "functions": {
+    "api/index.php": {
+      "runtime": "@vercel/php@2.0.0"
+    }
+  },
   "routes": [
     {
       "src": "/build/(.*)",
