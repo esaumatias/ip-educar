@@ -1,8 +1,27 @@
 {
   "version": 2,
-  "buildCommand": "yarn build && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
-  "outputDirectory": "dist",
+  "buildCommand": "yarn build && composer install --no-dev --optimize-autoloader",
+  "outputDirectory": "public",
   "framework": null,
-  "installCommand": "yarn install"
+  "installCommand": "yarn install && composer install --no-dev --optimize-autoloader",
+  "functions": {
+    "api/index.php": {
+      "runtime": "php@8.3"
+    }
+  },
+  "routes": [
+    {
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot|json|xml|txt))",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ]
 }
 
