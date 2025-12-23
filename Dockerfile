@@ -32,8 +32,18 @@ WORKDIR /app
 # Copiar arquivos do projeto
 COPY . .
 
+# Clonar pacotes necessários (se não estiverem no repositório)
+RUN mkdir -p packages/portabilis && \
+    if [ ! -d "packages/portabilis/i-educar-library-package" ]; then \
+        git clone https://github.com/portabilis/i-educar-library-package.git packages/portabilis/i-educar-library-package || true; \
+    fi && \
+    if [ ! -d "packages/portabilis/pre-matricula-digital" ]; then \
+        git clone https://github.com/portabilis/pre-matricula-digital.git packages/portabilis/pre-matricula-digital || true; \
+    fi
+
 # Instalar dependências
 RUN composer install --no-dev --optimize-autoloader --no-interaction && \
+    composer plug-and-play && \
     yarn install && \
     yarn build && \
     php artisan storage:link || true && \
